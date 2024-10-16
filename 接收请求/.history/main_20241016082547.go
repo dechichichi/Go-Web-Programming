@@ -21,7 +21,7 @@ func (h *HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 type GoodByeHandler struct{}
 
-func (h *GoodByeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *GoodByeHandler) ServeHTTP(W http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Goodbye!")
 }
 
@@ -40,7 +40,7 @@ func main() {
 	}
 	http.Handle("/handler", &MyHandler{})
 	http.Handle("/hello", &HelloHandler{})
-	http.Handle("/goodbye", &GoodByeHandler{})
+	http.Handle("goodbye", &GoodByeHandler{})
 	server.ListenAndServe() //启动服务器
 	//将HTTP通信放到SSL之上进行 HTTPS服务
 	//server.ListenAndServeTLS("cert.pem", "key.pem") //cert.pem SSL证书 key.pem 服务器私钥
